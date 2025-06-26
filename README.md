@@ -1,2 +1,2 @@
 # Fundamentos_de_la_Programacion_Practica
-Clases prácticas de la materia - FIUNA
+Mis clases prácticas de la materia - FIUNA
