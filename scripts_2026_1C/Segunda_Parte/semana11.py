@@ -409,107 +409,107 @@ Mayor cantidad de ceros: 2 (Numero: 10)
 Cantidad de numeros con unos primos: 3
 """
 
-# def es_entero(cadena):
-#     if len(cadena) == 0:
-#         return False
+def es_entero(cadena):
+    if len(cadena) == 0:
+        return False
 
-#     i = 0
+    i = 0
 
-#     # permitir signo negativo
-#     if cadena[0] == '-':
-#         if len(cadena) == 1:
-#             return False
-#         i = 1
+    # permitir signo negativo
+    if cadena[0] == '-':
+        if len(cadena) == 1:
+            return False
+        i = 1
 
-#     for j in range(i, len(cadena)):
-#         if cadena[j] < '0' or cadena[j] > '9':
-#             return False
+    for j in range(i, len(cadena)):
+        if cadena[j] < '0' or cadena[j] > '9':
+            return False
 
-#     return True
+    return True
 
-# def validar_entero_en_rango(mensaje, minimo, maximo):
-#     while True:
-#         entrada = input(mensaje)
+def validar_entero_en_rango(mensaje, minimo, maximo):
+    while True:
+        entrada = input(mensaje)
 
-#         if not es_entero(entrada):
-#             print("Error: debe ingresar un numero entero")
-#         else:
-#             numero = int(entrada)
+        if not es_entero(entrada):
+            print("Error: debe ingresar un numero entero")
+        else:
+            numero = int(entrada)
 
-#             if numero < minimo or numero > maximo:
-#                 print("Error: el numero debe estar entre", minimo, "y", maximo)
-#             else:
-#                 return numero
+            if numero < minimo or numero > maximo:
+                print("Error: el numero debe estar entre", minimo, "y", maximo)
+            else:
+                return numero
 
-# # x = validar_entero_en_rango("Ingrese un numero entre -5 y 5: ", -5, 5)
-# # print("Numero valido:", x)
+# x = validar_entero_en_rango("Ingrese un numero entre -5 y 5: ", -5, 5)
+# print("Numero valido:", x)
 
-# # ==========================================================
-# # FUNCION: CONTAR CEROS Y UNOS EN BINARIO (SIN STRING)
-# # ==========================================================
+# ==========================================================
+# FUNCION: CONTAR CEROS Y UNOS EN BINARIO (SIN STRING)
+# ==========================================================
 
-# def contar_bits(numero):
-#     ceros = 0
-#     unos = 0
+def contar_bits(numero):
+    ceros = 0
+    unos = 0
 
-#     while numero > 0:
-#         resto = numero % 2
+    while numero > 0:
+        resto = numero % 2
 
-#         if resto == 0:
-#             ceros += 1
-#         else:
-#             unos += 1
+        if resto == 0:
+            ceros += 1
+        else:
+            unos += 1
 
-#         numero = numero // 2
+        numero = numero // 2
 
-#     return ceros, unos
+    return ceros, unos
 
-# # ==========================================================
-# # FUNCION: VERIFICAR SI UN NUMERO ES PRIMO
-# # ==========================================================
+# ==========================================================
+# FUNCION: VERIFICAR SI UN NUMERO ES PRIMO
+# ==========================================================
 
-# def es_primo(n):
-#     if n < 2:
-#         return False
+def es_primo(n):
+    if n < 2:
+        return False
 
-#     for i in range(2, n):
-#         if n % i == 0:
-#             return False
+    for i in range(2, n):
+        if n % i == 0:
+            return False
 
-#     return True
+    return True
 
-# # ==========================================================
-# # PROGRAMA PRINCIPAL
-# # ==========================================================
+# ==========================================================
+# PROGRAMA PRINCIPAL
+# ==========================================================
 
-# # Validación de N
+# Validación de N
 
-# N = validar_entero_en_rango("Ingrese N (cant de nums): ", 1, 5)
+N = validar_entero_en_rango("Ingrese N (cant de nums): ", 1, 5)
 
-# mayor_ceros = -1
-# numero_mayor_ceros = 0
+mayor_ceros = -1
+numero_mayor_ceros = 0
 
-# contador_primos = 0
-
-
-# for i in range(N):
-#     num = validar_entero_en_rango(f"Ingrese el numero {i+1}: ", 1, 1000)
-
-#     ceros, unos = contar_bits(num)
-#     primo = es_primo(unos)
-#     print("Numero:", num, "Ceros:", ceros, "Unos:", unos, end=" ")
-
-#     if primo:
-#         print("(PRIMO)")
-#         contador_primos += 1
-#     else:
-#         print("(NO PRIMO)")
-
-#     # determinar el numero con mas ceros
-#     if ceros > mayor_ceros:
-#         mayor_ceros = ceros
-#         numero_mayor_ceros = num
+contador_primos = 0
 
 
-# print("Mayor cantidad de ceros:", mayor_ceros, "(Numero:", numero_mayor_ceros, ")")
-# print("Cantidad de numeros con unos primos:", contador_primos)
+for i in range(N):
+    num = validar_entero_en_rango(f"Ingrese el numero {i+1}: ", 1, 1000)
+
+    ceros, unos = contar_bits(num)
+    primo = es_primo(unos)
+    print("Numero:", num, "Ceros:", ceros, "Unos:", unos, end=" ")
+
+    if primo:
+        print("(PRIMO)")
+        contador_primos += 1
+    else:
+        print("(NO PRIMO)")
+
+    # determinar el numero con mas ceros
+    if ceros > mayor_ceros:
+        mayor_ceros = ceros
+        numero_mayor_ceros = num
+
+
+print("Mayor cantidad de ceros:", mayor_ceros, "(Numero:", numero_mayor_ceros, ")")
+print("Cantidad de numeros con unos primos:", contador_primos)
