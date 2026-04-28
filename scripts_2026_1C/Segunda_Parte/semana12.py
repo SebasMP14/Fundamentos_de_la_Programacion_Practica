@@ -47,11 +47,12 @@
 #   if n == 0:
 #     return 1
 #   else:
+#     print(n)
 #     return n * factorial(n-1)
 
 # print(factorial(5))  # 120
 
-# # Version iterativa
+# Version iterativa
 # def factorial_iter(n):
 #   resultado = 1
 #   for i in range(1, n+1):
@@ -62,9 +63,9 @@
 
 
 
-# """ Potencia
-# x^n = x * x^(n-1)
-# """
+""" Potencia
+x^n = x * x^(n-1)
+"""
 # def potencia(x, n):
 #   if n == 0:
 #     return 1
@@ -75,17 +76,17 @@
 
 
 
-# """ Suma de dígitos
-# Ejemplo:
-# 1234 = 4 + suma(123)
-# """
+""" Suma de dígitos
+Ejemplo:
+1234 = 4 + suma(123)
+"""
 # def suma_digitos(n):
 #   if n == 0:
 #     return 0
 #   else:
 #     return n % 10 + suma_digitos(n // 10)
 
-# print(suma_digitos(1234))  # 10
+# print(suma_digitos(123528524))  # 10
 
 
 
@@ -115,12 +116,14 @@
 #   if n == 0:
 #     return inv
 #   else:
+#     print(n, inv)
 #     return invertir(n // 10, inv*10 + n % 10)
 
 # def es_capicua(n):
 #   return n == invertir(n)
 
-# print(es_capicua(12321))
+# print("n, inv")
+# print(es_capicua(1231))
 
 
 
@@ -138,9 +141,10 @@
 #   if n < 2:
 #     return n
 #   else:
+#     print(n)
 #     return binario(n // 2) * 10 + (n % 2)
 
-# print(binario(10))
+# print(binario(33))
 
 
 
@@ -156,8 +160,9 @@
 #   if n % i == 0:
 #     return False
 
+#   print(n, i)
 #   return es_primo_rec(n, i+1)
-
+# print("n, i")
 # print(es_primo_rec(17))  # True
 
 
@@ -171,40 +176,27 @@
 
 # """
 # ENUNCIADO:
-
 # Un número se dice "ESPECIAL" si cumple TODAS las siguientes condiciones:
-
 # 1) La suma de sus divisores propios (excluyendo el número)
 #   es igual a otro número dentro del rango analizado (2 a N).
-
 # 2) La cantidad de divisores del número es PAR.
-
 # 3) La suma de sus dígitos es un número PERFECTO.
-
 # -----------------------------------------------------
-
 # Recordatorios:
-
 # Número PERFECTO:
 # Es un número cuya suma de divisores propios es igual al mismo número.
 # Ejemplo:
 # 6 -> 1 + 2 + 3 = 6
-
 # -----------------------------------------------------
-
 # El programa debe:
-
 # 1) Leer un número N (validar: entero positivo > 1)
 # 2) Analizar todos los números desde 2 hasta N
 # 3) Determinar cuáles son "ESPECIALES"
 # 4) Mostrar:
 #   - cada número especial
 #   - cuántos hay en total
-
 # -----------------------------------------------------
-
 # RESTRICCIONES:
-
 # - NO usar strings
 # - NO usar listas
 # - Implementar funciones:
@@ -215,35 +207,49 @@
 # ==========================================================
 # FUNCIONES ITERATIVAS
 # ==========================================================
-
 def suma_divisores(n):
   suma = 0
-
   for i in range(1, n):
     if n % i == 0:
       suma += i
-
   return suma
 
+def suma_divisores_rec(n, i=1):
+  if i == n:
+    return 0
+
+  if n % i == 0:
+    return i + suma_divisores_rec(n, i+1)
+  else:
+    return suma_divisores_rec(n, i+1)
 
 def cantidad_divisores(n):
   contador = 0
-
   for i in range(1, n+1):
     if n % i == 0:
       contador += 1
-
   return contador
 
+def cantidad_divisores_rec(n, i=1):
+  if i > n:
+    return 0
+
+  if n % i == 0:
+    return 1 + cantidad_divisores_rec(n, i+1)
+  else:
+    return cantidad_divisores_rec(n, i+1)
 
 def suma_digitos(n):
   suma = 0
-
   while n > 0:
     suma += n % 10
     n = n // 10
-
   return suma
+
+def suma_digitos_rec(n):
+  if n == 0:
+    return 0
+  return n % 10 + suma_digitos_rec(n // 10)
 
 
 def es_perfecto(n):
@@ -259,47 +265,16 @@ def es_especial_iter(n, N):
 
   return cond1 and cond2 and cond3
 
-
-# # ==========================================================
-# # FUNCIONES RECURSIVAS
-# # ==========================================================
-
-def suma_divisores_rec(n, i=1):
-  if i == n:
-    return 0
-
-  if n % i == 0:
-    return i + suma_divisores_rec(n, i+1)
-  else:
-    return suma_divisores_rec(n, i+1)
-
-
-def cantidad_divisores_rec(n, i=1):
-  if i > n:
-    return 0
-
-  if n % i == 0:
-    return 1 + cantidad_divisores_rec(n, i+1)
-  else:
-    return cantidad_divisores_rec(n, i+1)
-
-
-def suma_digitos_rec(n):
-  if n == 0:
-    return 0
-  return n % 10 + suma_digitos_rec(n // 10)
-
-
 def es_perfecto_rec(n):
   return suma_divisores_rec(n) == n
 
 
 def es_especial_rec(n, N):
-  suma = suma_divisores(n)
+  suma = suma_divisores_rec(n)
 
   cond1 = suma >= 2 and suma <= N   # o simplemente: suma <= N (ya que suma >=1 siempre)
-  cond2 = cantidad_divisores(n) % 2 == 0
-  cond3 = es_perfecto(suma_digitos(n))
+  cond2 = cantidad_divisores_rec(n) % 2 == 0
+  cond3 = es_perfecto_rec(suma_digitos_rec(n))
 
   return cond1 and cond2 and cond3
 
@@ -322,7 +297,7 @@ print("=== VERSION ITERATIVA ===")
 contador_iter = 0
 
 for num in range(2, N+1):
-  if es_especial_iter(num):
+  if es_especial_iter(num, N):
     print("Especial:", num)
     contador_iter += 1
 
@@ -334,7 +309,7 @@ print("\n=== VERSION RECURSIVA ===")
 contador_rec = 0
 
 for num in range(2, N+1):
-  if es_especial_rec(num):
+  if es_especial_rec(num,N):
     print("Especial:", num)
     contador_rec += 1
 
