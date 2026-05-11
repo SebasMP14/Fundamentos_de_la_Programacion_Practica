@@ -293,282 +293,280 @@ print("Binaria -> Pos:", pos2, "Comparaciones:", c2)
 
 
 
-# #########################################################################################################################################
-# """
-# ENUNCIADO:
+#########################################################################################################################################
+"""
+ENUNCIADO:
 
-# Se desea analizar una secuencia de números generados
-# a partir de una expresión matemática.
+Se desea analizar una secuencia de números generados
+a partir de una expresión matemática.
 
-# 1) El usuario debe ingresar:
-#    - Un número entero positivo N (N >= 5)
-#    - Un número entero positivo K
+1) El usuario debe ingresar:
+   - Un número entero positivo N (N >= 5)
+   - Un número entero positivo K
 
-# 2) Generar una lista de N números enteros positivos
-#    utilizando la siguiente fórmula:
+2) Generar una lista de N números enteros positivos
+   utilizando la siguiente fórmula:
 
-#         f(i) = i^3 - 4*i + 7
+        f(i) = i^3 - 4*i + 7
 
-#    para i desde 1 hasta N
+   para i desde 1 hasta N
 
-# -----------------------------------------------------
+-----------------------------------------------------
 
-# 3) FILTRADO:
+3) FILTRADO:
 
-# De la lista generada, se deben considerar SOLO aquellos números que:
+De la lista generada, se deben considerar SOLO aquellos números que:
 
-# - Tengan una cantidad PAR de divisores
-# - Y cuya suma de divisores propios sea MAYOR que el propio número
+- Tengan una cantidad PAR de divisores
+- Y cuya suma de divisores propios sea MAYOR que el propio número
 
-# (Los números que cumplen esta condición se llaman "ABUNDANTES")
+(Los números que cumplen esta condición se llaman "ABUNDANTES")
 
-# -----------------------------------------------------
+-----------------------------------------------------
 
-# 4) ORDENACIÓN:
+4) ORDENACIÓN:
 
-# Ordenar los números filtrados utilizando
-# EXCLUSIVAMENTE el algoritmo de ORDENACIÓN POR SELECCIÓN.
+Ordenar los números filtrados utilizando
+EXCLUSIVAMENTE el algoritmo de ORDENACIÓN POR SELECCIÓN.
 
-# Ordenar en forma ASCENDENTE.
+Ordenar en forma ASCENDENTE.
 
-# -----------------------------------------------------
+-----------------------------------------------------
 
-# 5) BÚSQUEDA:
+5) BÚSQUEDA:
 
-# Buscar el K-ésimo número cuya suma de dígitos es primo
-# utilizando BÚSQUEDA BINARIA.
+Buscar el K-ésimo número cuya suma de dígitos es primo
+utilizando BÚSQUEDA BINARIA.
 
-# IMPORTANTE:
-# - Si existen menos de K números cuya suma sean primos → indicar error
+IMPORTANTE:
+- Si existen menos de K números cuya suma sean primos → indicar error
 
-# -----------------------------------------------------
+-----------------------------------------------------
 
-# 6) SALIDA:
+6) SALIDA:
 
-# Mostrar:
+Mostrar:
 
-# - Lista generada original
-# - Lista filtrada (antes de ordenar)
-# - Lista ordenada
-# - El número cuya suma de digitos sea primo encontrado (si existe)
-# - Su posición en la lista ordenada
+- Lista generada original
+- Lista filtrada (antes de ordenar)
+- Lista ordenada
+- El número cuya suma de digitos sea primo encontrado (si existe)
+- Su posición en la lista ordenada
 
-# -----------------------------------------------------
+-----------------------------------------------------
 
-# RESTRICCIONES:
+RESTRICCIONES:
 
-# - NO usar funciones de ordenación de Python
-# - NO usar librerías externas
-# - Implementar:
-#   * función de generación
-#   * función de divisores
-#   * ordenación por selección
-#   * búsqueda binaria
-#   * verificación de número
+- NO usar funciones de ordenación de Python
+- NO usar librerías externas
+- Implementar:
+  * función de generación
+  * función de divisores
+  * ordenación por selección
+  * búsqueda binaria
+  * verificación de número
 
-# ------------------------------------------------------------
-# Entrada:
-# N = 10
-# K = 1
+------------------------------------------------------------
+Entrada:
+N = 10
+K = 1
 
-# Salida:
-# Lista original: [...]
-# Lista filtrada: [...]
-# Lista ordenada: [...]
-# Número perfecto encontrado: 6
-# Posición: 2
-# ------------------------------------------------------------
-# """
-
+Salida:
+Lista original: [...]
+Lista filtrada: [...]
+Lista ordenada: [...]
+Número perfecto encontrado: 6
+Posición: 2
+------------------------------------------------------------
+"""
 
 # ==========================================================
 # GENERAR LISTA
 # ==========================================================
 
-# def generar_lista(N):
-#   lista = []
+def generar_lista(N):
+  lista = []
 
-#   for i in range(1, N+1):
-#     valor = i**3 - 4*i + 7
-#     lista.append(valor)
+  for i in range(1, N+1):
+    valor = i**3 - 4*i + 7
+    lista.append(valor)
 
-#   return lista
+  return lista
 
 
 # # ==========================================================
 # # SUMA DE DIVISORES PROPIOS
 # # ==========================================================
 
-# def suma_divisores(n):
-#   suma = 0
+def suma_divisores(n):
+  suma = 0
 
-#   for i in range(1, n):
-#     if n % i == 0:
-#       suma += i
+  for i in range(1, n):
+    if n % i == 0:
+      suma += i
 
-#   return suma
+  return suma
 
 
 # # ==========================================================
 # # CANTIDAD DE DIVISORES
 # # ==========================================================
 
-# def cantidad_divisores(n):
-#   contador = 0
+def cantidad_divisores(n):
+  contador = 0
 
-#   for i in range(1, n+1):
-#     if n % i == 0:
-#       contador += 1
+  for i in range(1, n+1):
+    if n % i == 0:
+      contador += 1
 
-#   return contador
+  return contador
 
 
 # # ==========================================================
 # # NUMERO ABUNDANTE
 # # ==========================================================
 
-# def es_abundante(n):
-#   return suma_divisores(n) > n
+def es_abundante(n):
+  return suma_divisores(n) > n
 
 
 # # ==========================================================
 # # SUMA DE DIGITOS
 # # ==========================================================
 
-# def suma_digitos(n):
-#   suma = 0
+def suma_digitos(n):
+  suma = 0
 
-#   while n > 0:
-#     suma += n % 10
-#     n = n // 10
+  while n > 0:
+    suma += n % 10
+    n = n // 10
 
-#   return suma
+  return suma
 
-# # ==========================================================
-# # NUMERO PRIMO
-# # ==========================================================
+# ==========================================================
+# NUMERO PRIMO
+# ==========================================================
 
-# def es_primo(n):
-#   if n < 2:
-#     return False
+def es_primo(n):
+  if n < 2:
+    return False
 
-#   for i in range(2, n):
-#     if n % i == 0:
-#       return False
+  for i in range(2, n):
+    if n % i == 0:
+      return False
 
-#   return True
-
-
-# # ==========================================================
-# # FILTRAR LISTA
-# # ==========================================================
-
-# def filtrar(lista):
-#   filtrados = []
-
-#   for num in lista:
-#     if cantidad_divisores(num) % 2 == 0 and es_abundante(num):
-#       filtrados.append(num)
-
-#   return filtrados
+  return True
 
 
-# # ==========================================================
-# # ORDENACION POR SELECCION
-# # ==========================================================
+# ==========================================================
+# FILTRAR LISTA
+# ==========================================================
 
-# def seleccion(lista):
-#   n = len(lista)
+def filtrar(lista):
+  filtrados = []
 
-#   for i in range(n):
+  for num in lista:
+    if cantidad_divisores(num) % 2 == 0 and es_abundante(num):
+      filtrados.append(num)
 
-#     min_idx = i
-
-#     for j in range(i+1, n):
-#       if lista[j] < lista[min_idx]:
-#         min_idx = j
-
-#     lista[i], lista[min_idx] = lista[min_idx], lista[i]
-
-#   return lista
+  return filtrados
 
 
-# # ==========================================================
-# # OBTENER K-ESIMO PERFECTO
-# # ==========================================================
+# ==========================================================
+# ORDENACION POR SELECCION
+# ==========================================================
+def seleccion(lista):
+  n = len(lista)
 
-# def obtener_k_esimo_perfecto(lista, K):
-#   contador = 0
+  for i in range(n):
 
-#   for num in lista:
-#     if es_primo(suma_digitos(num)):
-#       contador += 1
+    min_idx = i
 
-#       if contador == K:
-#         return num
+    for j in range(i+1, n):
+      if lista[j] < lista[min_idx]:
+        min_idx = j
 
-#   return None
+    lista[i], lista[min_idx] = lista[min_idx], lista[i]
 
-
-# # ==========================================================
-# # BUSQUEDA BINARIA
-# # ==========================================================
-
-# def busqueda_binaria(lista, objetivo):
-#   izquierda = 0
-#   derecha = len(lista) - 1
-
-#   while izquierda <= derecha:
-#     medio = (izquierda + derecha) // 2
-
-#     if lista[medio] == objetivo:
-#       return medio
-#     elif lista[medio] < objetivo:
-#       izquierda = medio + 1
-#     else:
-#       derecha = medio - 1
-
-#   return -1
+  return lista
 
 
-# # ==========================================================
-# # PROGRAMA PRINCIPAL
-# # ==========================================================
+# ==========================================================
+# OBTENER K-ESIMO PERFECTO
+# ==========================================================
 
-# # VALIDACION
-# N = 0
-# while N < 5:
-#   N = int(input("Ingrese N (>=5): "))
+def obtener_k_esimo_perfecto(lista, K):
+  contador = 0
 
-# K = 0
-# while K <= 0:
-#   K = int(input("Ingrese K (>0): "))
+  for num in lista:
+    if es_primo(suma_digitos(num)):
+      contador += 1
 
+      if contador == K:
+        return num
 
-# # 1) GENERAR
-# original = generar_lista(N)
-# print("Lista original:", original)
+  return None
 
 
-# # 2) FILTRAR
-# filtrados = filtrar(original)
-# print("Lista filtrada:", filtrados)
+# ==========================================================
+# BUSQUEDA BINARIA
+# ==========================================================
+
+def busqueda_binaria(lista, objetivo):
+  izquierda = 0
+  derecha = len(lista) - 1
+
+  while izquierda <= derecha:
+    medio = (izquierda + derecha) // 2
+
+    if lista[medio] == objetivo:
+      return medio
+    elif lista[medio] < objetivo:
+      izquierda = medio + 1
+    else:
+      derecha = medio - 1
+
+  return -1
 
 
-# # 3) ORDENAR
-# ordenados = seleccion(filtrados.copy())
-# print("Lista ordenada:", ordenados)
+# ==========================================================
+# PROGRAMA PRINCIPAL
+# ==========================================================
+
+# VALIDACION
+N = 0
+while N < 5:
+  N = int(input("Ingrese N (>=5): "))
+
+K = 0
+while K <= 0:
+  K = int(input("Ingrese K (>0): "))
 
 
-# # 4) OBTENER K-ESIMO PERFECTO
-# objetivo = obtener_k_esimo_perfecto(ordenados, K)
+# 1) GENERAR
+original = generar_lista(N)
+print("Lista original:", original)
 
-# if objetivo is None:
-#   print("No existen", K, "suma de dígitos que sean primos")
-# else:
-#   print("Numero k-esimo cuya suma de dígitos es primo encontrado:", objetivo)
 
-#   # 5) BUSQUEDA BINARIA
-#   pos = busqueda_binaria(ordenados, objetivo)
+# 2) FILTRAR
+filtrados = filtrar(original)
+print("Lista filtrada:", filtrados)
 
-#   print("Posicion en lista ordenada:", pos)
+
+# 3) ORDENAR
+ordenados = seleccion(filtrados.copy())
+print("Lista ordenada:", ordenados)
+
+
+# 4) OBTENER K-ESIMO PERFECTO
+objetivo = obtener_k_esimo_perfecto(ordenados, K)
+
+if objetivo is None:
+  print("No existen", K, "suma de dígitos que sean primos")
+else:
+  print("Numero k-esimo cuya suma de dígitos es primo encontrado:", objetivo)
+
+  # 5) BUSQUEDA BINARIA
+  pos = busqueda_binaria(ordenados, objetivo)
+
+  print("Posicion en lista ordenada:", pos)
