@@ -62,7 +62,8 @@ tensor = np.array([
 ])
 
 # print(mat.shape())
-# print(tensor.shape)
+print(tensor.shape)
+print(np.sum(tensor))
 
 
 # # ==========================================================
@@ -72,14 +73,15 @@ tensor = np.array([
 x = np.array([1, 2, 3])
 y = np.array([4, 5, 6])
 
-# print(x + y)
-# print(x * y)
-# print(x ** 2)
-# z = np.sqrt(x)
-# print(z)
-# print(np.sqrt(x))
-# print(np.exp(x))
-# print(np.log(x))
+print(x + y)
+print(x * y)
+print(x ** 2)
+z = np.sqrt(x)
+print(z)
+print(np.sqrt(x))
+print(np.exp(x))
+print(np.log(x))
+# np.
 
 
 # # ==========================================================
@@ -89,12 +91,12 @@ y = np.array([4, 5, 6])
 data = np.array([[1, 2, 3],
                 [4, 5, 6]])
 
-# print(np.sum(data))
-# print(np.sum(data, axis=0))  # columnas
-# print(np.sum(data, axis=1))  # filas
-# print(np.mean(data))
-# print(np.max(data))
-# print(np.min(data))
+print(np.sum(data))
+print(np.sum(data, axis=0))  # columnas
+print(np.sum(data, axis=1))  # filas
+print(np.mean(data))
+print(np.max(data))
+print(np.min(data))
 
 
 # # ==========================================================
@@ -158,20 +160,18 @@ Calcular:
 N = 4
 M = 5
 
-mat = np.random.randint(1, 101, (N, M))
-
+mat = np.random.randint(0, 101, (N, M))
 # print("Matriz:\n", mat)
-
 suma_filas = np.sum(mat, axis=1)
 suma_columnas = np.sum(mat, axis=0)
 promedio = np.mean(mat)
 
 mayores = mat[mat > promedio]
 
-# print("Suma filas:", suma_filas)
-# print("Suma columnas:", suma_columnas)
-# print("Promedio:", promedio)
-# print("Mayores al promedio:", mayores)
+print("Suma filas:", suma_filas)
+print("Suma columnas:", suma_columnas)
+print("Promedio:", promedio)
+print("Mayores al promedio:", mayores)
 
 
 # # ==========================================================

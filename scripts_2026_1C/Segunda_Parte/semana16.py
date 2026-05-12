@@ -17,6 +17,7 @@ PASOS:
 ----------------------------------------
 
 EJEMPLO:
+def funcion([...]):
 lista = [8, 3, 1, 7, 0, 10, 2]
 
 Elegimos pivote = 7
@@ -24,7 +25,7 @@ Menores: [3, 1, 0, 2]
 Mayores: [8, 10]
 
 Resultado parcial:
-[3, 1, 0, 2] + [7] + [8, 10]
+return funcion([3, 1, 0, 2]) + [7] + funcion([8, 10])
 
 Luego se repite el proceso en cada lado.
 
@@ -201,6 +202,15 @@ def quicksort_count(lista):
 
     return izq + iguales + der, operaciones + op1 + op2
 
+# import random
+
+# N = 10000000000
+# datos = [random.randint(1, 10000) for _ in range(N)]
+# print("Lista desordenada: ", datos)
+# ordenada, count = quicksort_count(datos)
+
+# print("Lista ordenada: ", ordenada)
+# print("Conteo de operaciones: ", count)
 # ==========================================================
 # 4) EJERCICIO GUIADO
 # ==========================================================
@@ -269,7 +279,6 @@ Dividir la lista ordenada en dos partes:
 
 IMPORTANTE:
 → No usar reverse()
-→ Adaptar el algoritmo
 
 -----------------------------------------------------
 
@@ -358,7 +367,6 @@ def quicksort(lista, asc=True):
     mayores = []
 
     for x in lista:
-
         if x < pivote:
             menores.append(x)
         elif x > pivote:
