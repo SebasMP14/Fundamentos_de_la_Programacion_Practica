@@ -91,6 +91,11 @@ print(np.log(x))
 data = np.array([[1, 2, 3],
                 [4, 5, 6]])
 
+matriz = [ [1, 2, 3], [3, 4, 5], [5, 6, 7]]
+print("MATRIZ: ", matriz)
+d = np.array(matriz)
+print("DDDD: ", d)
+
 print(np.sum(data))
 print(np.sum(data, axis=0))  # columnas
 print(np.sum(data, axis=1))  # filas
